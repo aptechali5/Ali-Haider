@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+    
+
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+    img {
+        width: 50%;
+    }
+
+
+
+</style>
+</head>
+<body>
+
+
+    
+    <button type="submit" id="btn">Show Products</button>
+    <div class="container">
+        <div class="row">
+    </div>
+</div>
+</body>
+
+<script>
+$(document).ready(function(){
+    $('#btn').click(function(){
+
+$.ajax({
+url: 'https://fakestoreapi.com/products',
+method: 'GET',
+success: function(data) {
+    console.log(data);
+    var Apd = '';
+
+    $.each(data, function(key,val){
+        Apd += '<div class="col-md-3">'
+       Apd += '<img src="' + val.image + '"/>';
+       Apd += '<div class"text-center">' + val.price + '</div>';
+       Apd +='</div>';
+       
+        
+    });
+    $('.row').append(Apd);
+    $('p').addClass('price');
+
+}
+});
+    });
+});
+</script>
+</html>
